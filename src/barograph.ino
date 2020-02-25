@@ -54,6 +54,8 @@
 //Hauteur des caractère en pixel
 #define HEIGHT_CHAR 7
 
+#define SENSOR_ALTITUDE_IN_M 2
+
 const char* HISTOFILENAME = "H";
 
 //Ecran
@@ -282,7 +284,7 @@ void displayDisplayedPeriod(){
 
 void updatePressure(){
   //Mise à jour de la pression
-  long pressureTemp = bmp.readSealevelPressure((float)2);
+  long pressureTemp = bmp.readSealevelPressure((float)SENSOR_ALTITUDE_IN_M);
   long var;
   if(pressureTemp > pressure){
     var = pressureTemp - pressure;
@@ -338,7 +340,7 @@ void setup () {
   TFTscreen.begin();
   pinMode(BUZ, OUTPUT);
   
-  pressure = bmp.readSealevelPressure((float)2);
+  pressure = bmp.readSealevelPressure((float)SENSOR_ALTITUDE_IN_M);
   
   // clear the screen with a pretty color
   TFTscreen.background(0,0,0); 
